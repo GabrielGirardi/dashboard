@@ -28,7 +28,7 @@ export default function Chart() {
 
     return (
         <React.Fragment>
-        <Title>Today</Title>
+        <Title>Hoje</Title>
         <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
             <LineChart
             dataset={data}
@@ -40,36 +40,36 @@ export default function Chart() {
             }}
             xAxis={[
                 {
-                scaleType: 'point',
-                dataKey: 'time',
-                tickNumber: 2,
-                tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+                    scaleType: 'point',
+                    dataKey: 'time',
+                    tickNumber: 2,
+                    tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
                 },
             ]}
             yAxis={[
                 {
-                label: 'Sales ($)',
+                label: 'Vendas (R$)',
                 labelStyle: {
                     ...(theme.typography.body1 as ChartsTextStyle),
                     fill: theme.palette.text.primary,
                 },
-                tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
-                max: 2500,
-                tickNumber: 3,
+                    tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+                    max: 2500,
+                    tickNumber: 3,
                 },
             ]}
             series={[
                 {
-                dataKey: 'amount',
-                showMark: false,
-                color: theme.palette.primary.light,
+                    dataKey: 'amount',
+                    showMark: false,
+                    color: theme.palette.primary.light,
                 },
             ]}
             sx={{
-                [`.${axisClasses.root} line`]: { stroke: theme.palette.text.secondary },
-                [`.${axisClasses.root} text`]: { fill: theme.palette.text.secondary },
-                [`& .${axisClasses.left} .${axisClasses.label}`]: {
-                transform: 'translateX(-25px)',
+                    [`.${axisClasses.root} line`]: { stroke: theme.palette.text.secondary },
+                    [`.${axisClasses.root} text`]: { fill: theme.palette.text.secondary },
+                    [`& .${axisClasses.left} .${axisClasses.label}`]: {
+                    transform: 'translateX(-25px)',
                 },
             }}
             />
