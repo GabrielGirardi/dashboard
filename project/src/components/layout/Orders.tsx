@@ -62,15 +62,15 @@ function preventDefault(event: React.MouseEvent) {
 export default function Orders() {
     return (
         <React.Fragment>
-            <Title>Recent Orders</Title>
+            <Title>Pedidos Recentes</Title>
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Ship To</TableCell>
-                    <TableCell>Payment Method</TableCell>
-                    <TableCell align="right">Sale Amount</TableCell>
+                    <TableCell>Data</TableCell>
+                    <TableCell>Nome</TableCell>
+                    <TableCell>Endereço</TableCell>
+                    <TableCell>Forma de Pagamento</TableCell>
+                    <TableCell align="right">Total</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -80,13 +80,13 @@ export default function Orders() {
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.shipTo}</TableCell>
                             <TableCell>{row.paymentMethod}</TableCell>
-                            <TableCell align="right">{`$${row.amount}`}</TableCell>
+                            <TableCell align="right">{`R$ ${row.amount}`}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
             <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-                See more orders
+                Exibir Mais
             </Link>
         </React.Fragment>
     );

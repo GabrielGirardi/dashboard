@@ -3,15 +3,18 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 function Copyright(props: any) {
+    const CompanyName = props.name;
+    const CopyrightYear = new Date().getFullYear();
+
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-            Lorem Ipsum
-        </Link>
-        {' '}
-            {new Date().getFullYear()}
-        {'.'}
+            Copyright ©
+           
+            <Link color="inherit" href="https://mui.com/">
+                { CompanyName }
+            </Link>
+            
+            {` ${CopyrightYear}.`}
         </Typography>
     );
 }
