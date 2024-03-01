@@ -5,9 +5,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import Chart from '../layout/Chart';
+import Deposits from '../layout/Deposits';
+import Orders from '../layout/Orders';
 import Copyright from '../ui/Copyright';
 
 const HomePage: React.FC = () => {

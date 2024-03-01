@@ -24,6 +24,7 @@ export default function Deposits() {
         10: 'Novembro',
         11: 'Dezembro',
     }[getMonth];
+    const getYear = new Date().getFullYear();
     
 
     return (
@@ -33,7 +34,7 @@ export default function Deposits() {
                 R$ 3.024,00
             </Typography>
             <Typography color="text.secondary" sx={{ flex: 1 }}>
-                {getDay} de {monthName} de 2021
+                {getDay} de {monthName} de {getYear}
             </Typography>
             <div>
                 <Link color="primary" href="#" onClick={preventDefault}>

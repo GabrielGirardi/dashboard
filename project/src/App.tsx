@@ -18,8 +18,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
 import { mainListItems, secondaryListItems } from './components/layout/listItems';
-import HomePage from './components/layout/HomePage';
-import OrdersPage from './components/layout/OrdersPage';
+import HomePage from './components/pages/HomePage';
+import OrdersPage from './components/pages/OrdersPage';
 
 const drawerWidth: number = 240;
 
@@ -160,7 +160,7 @@ function App() {
                     <Router>
                         <Routes>
                             <Route path="/" element={<HomePage />} />
-                            <Route path="/details" element={<OrdersPage />} />
+                            <Route path="/pedidos" element={<OrdersPage />} />
                         </Routes>
                     </Router> 
                     
