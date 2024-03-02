@@ -22,6 +22,7 @@ import CustomerPage from './components/pages/CustomerPage';
 import RegisterPage from './components/pages/RegisterPage';
 import IntegrationsPage from './components/pages/IntegrationsPage';
 import SellPage from './components/pages/SellPage';
+import NotFoundPage from './components/pages/NotFoundPage';
 
 import NotificationButton from './components/ui/NotificationButton';
 
@@ -165,6 +166,7 @@ function App() {
                             <Route path="/pedidos" element={<OrdersPage />} />
                             <Route path="/integracoes" element={<IntegrationsPage/>} />
                             <Route path="/vendas" element={<SellPage />} />
+                            <Route path='*' element={<NotFoundPage/>} />
                         </Routes>
                     </Router> 
                     
