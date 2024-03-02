@@ -40,7 +40,7 @@ export const mainListItems = (
             <ListItemText primary="Pedidos" />
         </ListItemButton>
 
-        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]}>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/integracoes">
             <ListItemIcon>
                 <LayersIcon />
             </ListItemIcon>
