@@ -21,6 +21,7 @@ import OrdersPage from './components/pages/OrdersPage';
 import CustomerPage from './components/pages/CustomerPage';
 import RegisterPage from './components/pages/RegisterPage';
 import IntegrationsPage from './components/pages/IntegrationsPage';
+import SellPage from './components/pages/SellPage';
 
 import NotificationButton from './components/ui/NotificationButton';
 
@@ -80,6 +81,7 @@ const PageName = {
     '/clientes': 'Clientes',
     '/cadastro': 'Cadastro',
     '/integracoes': 'Integrações',
+    '/vendas': 'Vendas',
 }[window.location.pathname];
 
 
@@ -162,6 +164,7 @@ function App() {
                             <Route path="/cadastro" element={<RegisterPage />} />
                             <Route path="/pedidos" element={<OrdersPage />} />
                             <Route path="/integracoes" element={<IntegrationsPage/>} />
+                            <Route path="/vendas" element={<SellPage />} />
                         </Routes>
                     </Router> 
                     

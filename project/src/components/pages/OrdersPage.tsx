@@ -1,10 +1,10 @@
 import React from 'react';
-import OrdersChart from '../layout/OrdersTable';
+import OrdersTable from '../layout/OrdersTable';
 
 const OrdersPage: React.FC = () => {
     return (
         <>
-            <OrdersChart />
+            <OrdersTable />
         </>
     );
 };
