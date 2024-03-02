@@ -12,35 +12,35 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton href="/">
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItemButton>
 
-        <ListItemButton href="/pedidos">
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/vendas">
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
-            <ListItemText primary="Pedidos" />
+            <ListItemText primary="Vendas" />
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/clientes">
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Clientes" />
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/pedidos">
             <ListItemIcon>
                 <BarChartIcon />
             </ListItemIcon>
-            <ListItemText primary="Suporte" />
+            <ListItemText primary="Pedidos" />
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]}>
             <ListItemIcon>
                 <LayersIcon />
             </ListItemIcon>
@@ -55,21 +55,21 @@ export const secondaryListItems = (
             Relatórios Salvos
         </ListSubheader>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]}>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Mensal" />
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]}>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Semestral" />
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]}>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>

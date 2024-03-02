@@ -17,7 +17,7 @@ function createData(
 }
 
 
-export default function OrdersChart() {
+export default function OrdersTable() {
     const modifiedData = React.useMemo(() => {
         const ordersInfo = [
             createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'Camisa Azul Nike', 'VISA ⠀•••• 3719', 312.44, 'Entregue'),
@@ -42,7 +42,7 @@ export default function OrdersChart() {
     }, []);
 
     return (
-        <Container style={{ height: '80%', width: '100%' }} maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Container style={{ height: '80%', width: '100%' }} maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             <DataGrid
                 {...modifiedData}
                 slots={{
