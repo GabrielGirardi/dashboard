@@ -22,6 +22,7 @@ import HomePage from './components/pages/HomePage';
 import OrdersPage from './components/pages/OrdersPage';
 import CustomerPage from './components/pages/CustomerPage';
 import RegisterPage from './components/pages/RegisterPage';
+import IntegrationsPage from './components/pages/IntegrationsPage';
 
 const drawerWidth: number = 240;
 
@@ -78,6 +79,7 @@ const PageName = {
     '/pedidos': 'Pedidos',
     '/clientes': 'Clientes',
     '/cadastro': 'Cadastro',
+    '/integracoes': 'Integrações',
 }[window.location.pathname];
 
 
@@ -160,9 +162,10 @@ function App() {
                     <Router>
                         <Routes>
                             <Route path="/" element={<HomePage />} />
-                            <Route path="/pedidos" element={<OrdersPage />} />
                             <Route path="/clientes" element={<CustomerPage />} />
                             <Route path="/cadastro" element={<RegisterPage />} />
+                            <Route path="/pedidos" element={<OrdersPage />} />
+                            <Route path="/integracoes" element={<IntegrationsPage/>} />
                         </Routes>
                     </Router> 
                     
