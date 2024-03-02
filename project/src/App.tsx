@@ -3,13 +3,11 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -23,6 +21,9 @@ import OrdersPage from './components/pages/OrdersPage';
 import CustomerPage from './components/pages/CustomerPage';
 import RegisterPage from './components/pages/RegisterPage';
 import IntegrationsPage from './components/pages/IntegrationsPage';
+import SellPage from './components/pages/SellPage';
+
+import NotificationButton from './components/ui/NotificationButton';
 
 const drawerWidth: number = 240;
 
@@ -80,6 +81,7 @@ const PageName = {
     '/clientes': 'Clientes',
     '/cadastro': 'Cadastro',
     '/integracoes': 'Integrações',
+    '/vendas': 'Vendas',
 }[window.location.pathname];
 
 
@@ -121,11 +123,7 @@ function App() {
                         >
                             {PageName}
                         </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                        <NotificationButton/>
                     </Toolbar>
                 </AppBar>
 
@@ -166,6 +164,7 @@ function App() {
                             <Route path="/cadastro" element={<RegisterPage />} />
                             <Route path="/pedidos" element={<OrdersPage />} />
                             <Route path="/integracoes" element={<IntegrationsPage/>} />
+                            <Route path="/vendas" element={<SellPage />} />
                         </Routes>
                     </Router> 
                     

@@ -12,7 +12,8 @@ function createData(
         card: string, 
         amount: number, 
         status: string
-    ) {
+    ) { 
+
     return { id, date, name, address, product, card, amount, status };
 }
 
