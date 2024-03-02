@@ -20,6 +20,8 @@ import Toolbar from '@mui/material/Toolbar';
 import { mainListItems, secondaryListItems } from './components/layout/listItems';
 import HomePage from './components/pages/HomePage';
 import OrdersPage from './components/pages/OrdersPage';
+import CustomerPage from './components/pages/CustomerPage';
+import RegisterPage from './components/pages/RegisterPage';
 
 const drawerWidth: number = 240;
 
@@ -71,6 +73,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
+const PageName = {
+    '/': 'Dashboard',
+    '/pedidos': 'Pedidos',
+    '/clientes': 'Clientes',
+    '/cadastro': 'Cadastro',
+}[window.location.pathname];
+
+
+
 function App() {
     const defaultTheme = createTheme();
 
@@ -86,11 +97,7 @@ function App() {
                 <CssBaseline />
 
                 <AppBar position="absolute" open={open}>
-                    <Toolbar
-                        sx={{
-                            pr: '24px', // keep right padding when drawer closed
-                        }}
-                    >
+                    <Toolbar sx={{ pr: '24px' }}>
                         <IconButton
                             edge="start"
                             color="inherit"
@@ -110,7 +117,7 @@ function App() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Dashboard
+                            {PageName}
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
@@ -121,14 +128,7 @@ function App() {
                 </AppBar>
 
                 <Drawer variant="permanent" open={open}>
-                    <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                        }}
-                    >
+                    <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: [1] }}>
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
                         </IconButton>
@@ -161,6 +161,8 @@ function App() {
                         <Routes>
                             <Route path="/" element={<HomePage />} />
                             <Route path="/pedidos" element={<OrdersPage />} />
+                            <Route path="/clientes" element={<CustomerPage />} />
+                            <Route path="/cadastro" element={<RegisterPage />} />
                         </Routes>
                     </Router> 
                     
