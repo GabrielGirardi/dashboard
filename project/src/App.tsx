@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import NotificationButton from './components/ui/NotificationButton';
 
-import { mainListItems, secondaryListItems } from './components/layout/listItems';
+import { MainListItems, SecondaryListItems } from './components/layout/ListItems';
 import HomePage from './components/pages/HomePage';
 import OrdersPage from './components/pages/OrdersPage';
 import CustomerPage from './components/pages/CustomerPage';
@@ -131,9 +131,9 @@ function App() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        {MainListItems}
                         <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
+                        {SecondaryListItems}
                     </List>
                 </Drawer>
                 <Box
