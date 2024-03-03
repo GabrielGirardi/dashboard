@@ -82,7 +82,6 @@ const SalesPage: React.FC = () => {
         );
     };
     
-
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown; }>) => {
         const { name, value } = event.target;
 

@@ -60,6 +60,7 @@ export default function OrdersList() {
                 if (order._id === orderId) {
                     return { ...order, shippingStatus: newStatus };
                 }
+                
                 return order;
             });
             setOrdersInfo(updatedOrders);

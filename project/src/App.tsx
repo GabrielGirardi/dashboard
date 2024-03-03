@@ -14,6 +14,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import NotificationButton from './components/ui/NotificationButton';
 
 import { mainListItems, secondaryListItems } from './components/layout/listItems';
 import HomePage from './components/pages/HomePage';
@@ -23,8 +24,6 @@ import RegisterPage from './components/pages/RegisterPage';
 import IntegrationsPage from './components/pages/IntegrationsPage';
 import SellPage from './components/pages/SellPage';
 import NotFoundPage from './components/pages/NotFoundPage';
-
-import NotificationButton from './components/ui/NotificationButton';
 
 const drawerWidth: number = 240;
 
@@ -89,7 +88,6 @@ const PageName = {
 
 function App() {
     const defaultTheme = createTheme();
-
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -98,9 +96,7 @@ function App() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
-
                 <CssBaseline />
-
                 <AppBar position="absolute" open={open}>
                     <Toolbar sx={{ pr: '24px' }}>
                         <IconButton
@@ -127,23 +123,19 @@ function App() {
                         <NotificationButton/>
                     </Toolbar>
                 </AppBar>
-
                 <Drawer variant="permanent" open={open}>
                     <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: [1] }}>
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
                         </IconButton>
                     </Toolbar>
-
                     <Divider />
-
                     <List component="nav">
                         {mainListItems}
                         <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>
                 </Drawer>
-
                 <Box
                     component="main"
                     sx={{
@@ -157,7 +149,6 @@ function App() {
                     }}
                 >
                     <Toolbar />
-
                     <Router>
                         <Routes>
                             <Route path="/" element={<HomePage />} />
@@ -169,7 +160,6 @@ function App() {
                             <Route path='*' element={<NotFoundPage/>} />
                         </Routes>
                     </Router> 
-                    
                 </Box>
             </Box> 
         </ThemeProvider> 

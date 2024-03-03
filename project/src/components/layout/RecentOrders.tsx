@@ -40,7 +40,7 @@ const RecentOrders = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             <Title>Pedidos Recentes</Title>
             {loading ? (
                 <p>Carregando...</p>
@@ -71,7 +71,7 @@ const RecentOrders = () => {
             <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
                 Exibir Mais
             </Link>
-        </React.Fragment>
+        </>
     );
 }
 

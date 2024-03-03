@@ -9,30 +9,47 @@ Para instalar o projeto, siga estas etapas:
 1. Certifique-se de ter o Node.js e o npm instalados em seu sistema. Você pode baixá-los em [nodejs.org](https://nodejs.org/).
 
 2. Clone este repositório em sua máquina local usando o seguinte comando:
-   ```bash git clone https://github.com/GabrielGirardi/dashboard.git```
+
+```
+git clone https://github.com/GabrielGirardi/dashboard.git
+   
+```
 
 1. Navegue até o diretório do projeto:
-```cd dashboard```
+
+```
+cd dashboard
+```
 
 2. Navegue até o frontend:
 
-```cd project```
+```
+cd project
+```
 
 3. instale as dependências do projeto com o seguinte comando:
 
-```npm install```
+```
+npm install
+```
 
 4. Retorne ao diretório principal do projeto:
 
-```cd ..```
+```
+cd ..
+```
 
 5. Navegue até o backend:
 
-```cd backend```
+```
+cd backend
+```
 
 6. Novamente execute o comando para baixar as dependências:
 
-```npm install```
+```
+npm install
+```
 
 ##Configuração do Banco de Dados
 

@@ -4,7 +4,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-
 import Chart from '../layout/Chart';
 import Deposits from '../layout/Deposits';
 import RecentOrders from '../layout/RecentOrders';
@@ -43,8 +42,6 @@ const HomePage: React.FC = () => {
                         <Deposits />
                         </Paper>
                     </Grid>
-
-                    
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         <RecentOrders />
