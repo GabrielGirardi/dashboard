@@ -17,7 +17,6 @@ import {
     Unstable_Grid2 as Grid
 } from '@mui/material';
 
-  
 const states = [
     { value: ''},
     { value: 'SC', label: 'Santa Catarina' },
@@ -49,8 +48,6 @@ interface ValuesType {
     gender?: string
 }
 
-
-
 const RegisterPage: React.FC = () => {
     const [values, setValues] = useState<ValuesType>({
         name: '',
@@ -64,7 +61,6 @@ const RegisterPage: React.FC = () => {
     })
 
     const [error, setError] = useState(false);
-    
     const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
         setValues((prevState) => ({ ...prevState, [name]: value }));
@@ -123,7 +119,6 @@ const RegisterPage: React.FC = () => {
         } else {
             setValues((prevState) => ({ ...prevState, [name]: value }));
         }
-
     }, []);
 
     const handleCancel = () => {
@@ -182,8 +177,7 @@ const RegisterPage: React.FC = () => {
             });
         }
     }, [values]);
-
-      
+    
     return (
         <Container style={{ height: '80%', width: '100%' }} maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             <form autoComplete="off" onSubmit={handleSubmit}>

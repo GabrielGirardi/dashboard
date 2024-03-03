@@ -3,9 +3,7 @@ import OrdersList from '../layout/OrdersList';
 
 const OrdersPage: React.FC = () => {
     return (
-        <>
-            <OrdersList />
-        </>
+        <OrdersList />
     );
 };
 

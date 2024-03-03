@@ -46,7 +46,7 @@ export default function Deposits() {
     const getYear = new Date().getFullYear();
 
     return (
-        <React.Fragment>
+        <>
             <Title>Saldo do dia</Title>
             <Typography component="p" variant="h4">
                 R$ {dailyTotal}
@@ -59,6 +59,6 @@ export default function Deposits() {
                     Ver extrato
                 </Link>
             </div>
-        </React.Fragment>
+        </>
     );
 }

@@ -26,24 +26,22 @@ export default function Chart() {
                     const amount = parseFloat(order.cost); // Convertendo para número
                     return createData(time, amount);
                 });
-
                 dynamicData.sort((a, b) => {
                     const timeA = parseInt(a.time);
                     const timeB = parseInt(b.time);
                     return timeA - timeB;
                 });
-
                 setChartData(dynamicData);
             } catch (error) {
                 console.error('Erro ao obter os dados:', error);
             }
         };
-
+        
         fetchData();
     }, []);
 
     return (
-        <React.Fragment>
+        <>
             <Title>Hoje</Title>
             <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
                 <LineChart
@@ -90,6 +88,6 @@ export default function Chart() {
                     }}
                 />
             </div>
-        </React.Fragment>
+        </>
     );
 }
