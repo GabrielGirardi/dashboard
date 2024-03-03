@@ -9,7 +9,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 
-export const mainListItems = (
+export const MainListItems = (
     <>
         <ListItemButton sx={[{ '&:hover': {backgroundColor: 'lightGray'} }]} href="/">
             <ListItemIcon>
@@ -44,7 +44,7 @@ export const mainListItems = (
     </>
 );
 
-export const secondaryListItems = (
+export const SecondaryListItems = (
     <>
         <ListSubheader component="div" inset>
             Relatórios Salvos
