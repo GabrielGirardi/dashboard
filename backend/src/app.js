@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const { MongoClient } = require('mongodb');
 const routes = require('./routes');
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 const url = 'mongodb+srv://devggirardi:MrWthRKqAO6QaKl4@api-node.hkdhyoa.mongodb.net/?retryWrites=true&w=majority';
