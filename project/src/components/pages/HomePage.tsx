@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 
 import Chart from '../layout/Chart';
 import Deposits from '../layout/Deposits';
-import Orders from '../layout/Orders';
+import RecentOrders from '../layout/RecentOrders';
 import Copyright from '../ui/Copyright';
 
 const HomePage: React.FC = () => {
@@ -44,11 +44,10 @@ const HomePage: React.FC = () => {
                         </Paper>
                     </Grid>
 
-                    {/* Recent Orders */}
                     
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <Orders />
+                        <RecentOrders />
                         </Paper>
                     </Grid>
                 </Grid>

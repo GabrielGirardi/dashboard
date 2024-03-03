@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import Container from '@mui/material/Container';
 import Swal from 'sweetalert2'
+import axios from 'axios';
 
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -33,8 +34,8 @@ const states = [
 
 const gender = [
     { value: ''},
-    { value: 'masculino', label: 'Masculino' },
-    { value: 'feminino', label: 'Feminino' }
+    { value: 'Masculino', label: 'Masculino' },
+    { value: 'Femino', label: 'Feminino' }
 ];
 
 interface ValuesType {
@@ -62,7 +63,6 @@ const RegisterPage: React.FC = () => {
         gender: ''
     })
 
-
     const [error, setError] = useState(false);
     
     const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -75,20 +75,18 @@ const RegisterPage: React.FC = () => {
         }
 
         if (name === 'cep') {
+            const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
             let formattedValue = value.replace(/\D/g, '');
 
             if (formattedValue.length > 5) {
                 formattedValue = `${formattedValue.slice(0, 5)}-${formattedValue.slice(5)}`;
-            }
-
+            }  
+            
             if (formattedValue.length > 9) {
                 formattedValue = formattedValue.slice(0, 9);
             }
 
             setValues((prevState) => ({ ...prevState, [name]: formattedValue }));
-
-            const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
-
             setError(!cepRegex.test(formattedValue) && formattedValue.length > 0);
         } else if (name === 'phone') {
             let formattedValue = value.replace(/\D/g, '');
@@ -108,9 +106,8 @@ const RegisterPage: React.FC = () => {
             setValues((prevState) => ({ ...prevState, [name]: formattedValue }));
         } else if (name === 'birth') {
             const birthYear = parseInt(value.split('-')[0]);
-            const birthMonth = parseInt(value.split('-')[1]) - 1; // Subtraindo 1 do mês
+            const birthMonth = parseInt(value.split('-')[1]) - 1;
             const birthDay = parseInt(value.split('-')[2]);
-
             const birthDate = new Date(birthYear, birthMonth, birthDay);
 
             if (birthDate > new Date()) {
@@ -155,9 +152,35 @@ const RegisterPage: React.FC = () => {
         });
     };
     
-    const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('Dados do formulário:', values);
+        try {
+            await axios.post('http://localhost:3000/api/customers', values);
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Cliente cadastrado com sucesso.",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+            setValues({
+                name: '',
+                birth: '',
+                email: '',
+                phone: '',
+                address: '',
+                state: '',
+                cep: '',
+                gender: ''
+            });
+        } catch (error) {
+            console.error('Erro ao cadastrar cliente:', error);
+            Swal.fire({
+                title: "Erro!",
+                text: "Ocorreu um erro ao cadastrar o cliente.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
     }, [values]);
 
       

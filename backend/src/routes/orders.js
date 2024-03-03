@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const customers = await req.db.collection('customers').find({}).toArray();
-        res.json(customers);
+        const orders = await req.db.collection('orders').find({}).toArray();
+        res.json(orders);
     } catch (error) {
         console.error('Erro ao buscar clientes:', error);
         res.status(500).send('Erro interno do servidor');
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
         if (Object.keys(data).length === 0) {
             return res.status(400).send('O corpo da solicitação está vazio');
         }
-        const result = await req.db.collection('customers').insertOne(data);
+        const result = await req.db.collection('orders').insertOne(data);
         const insertedId = result.insertedId;
 
         res.json({ _id: insertedId });
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await req.db.collection('customers').deleteOne({ _id: new ObjectId(id) });
+        const result = await req.db.collection('orders').deleteOne({ _id: new ObjectId(id) });
         if (result.deletedCount === 0) {
             return res.status(404).send('Cliente não encontrado');
         }
@@ -47,23 +47,24 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, email } = req.body;
+        const updateFields = req.body;
 
-        if (!name || !email) {
-            return res.status(400).send('Nome e email são obrigatórios');
+        if (Object.keys(updateFields).length === 0) {
+            return res.status(400).send('O corpo da solicitação está vazio');
         }
 
-        const result = await req.db.collection('customers').updateOne(
+        const result = await req.db.collection('orders').updateOne(
             { _id: new ObjectId(id) },
-            { $set: { name, email } }
+            { $set: updateFields }
         );
-        
+
         if (result.matchedCount === 0) {
-            return res.status(404).send('Cliente não encontrado');
+            return res.status(404).send('Pedido não encontrado');
         }
-        res.send('Cliente editado com sucesso');
+
+        res.send('Pedido editado com sucesso');
     } catch (error) {
-        console.error('Erro ao editar cliente:', error);
+        console.error('Erro ao editar pedido:', error);
         res.status(500).send('Erro interno do servidor');
     }
 });

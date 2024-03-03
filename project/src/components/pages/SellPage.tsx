@@ -1,24 +1,12 @@
-import React, { useState, ChangeEvent } from 'react';
-import {
-    Container,
-    Typography,
-    TextField,
-    Button,
-    Grid
-} from '@mui/material';
+import React, { useState, ChangeEvent, useEffect } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+import { Container, Typography, TextField, Button, Grid } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ClearIcon from '@mui/icons-material/Clear';
-import Swal from 'sweetalert2'
-
-const buyerName = [
-    { value: ''},
-    { value: 'Elvis Presley', label: 'Elvis Presley' },
-    { value: 'Paul McCartney', label: 'Paul McCartney' },
-    { value: 'Tom Scholz', label: 'Tom Scholz' },
-    { value: 'Michael Jackson', label: 'Michael Jackson' },
-];
 
 const shippingStatus = [
     { value : '' },
@@ -38,9 +26,13 @@ const paymentMethod = [
     { value: 'Hipercard', label: 'Hipercard - Débito/Crédito' }
 ]
 
+interface Buyer {
+    value: string;
+    label?: string;
+}
 
 interface SaleData {
-    id: string;
+    hour: string;
     saleDate: string;
     buyerName: string;
     address: string;
@@ -52,7 +44,7 @@ interface SaleData {
 
 const SalesPage: React.FC = () => {
     const [saleData, setSaleData] = useState<SaleData>({
-        id: '',
+        hour: new Date().toLocaleTimeString(),
         saleDate: new Date().toLocaleDateString('pt-BR'),
         buyerName: '',
         address: '',
@@ -62,21 +54,34 @@ const SalesPage: React.FC = () => {
         shippingStatus: ''
     });
 
+    const [buyers, setBuyers] = useState<Buyer[]>([]);
+
+    useEffect(() => {
+        const fetchBuyers = async () => {
+            try {
+                const response = await axios.get<Buyer[]>('http://localhost:3000/api/customers');
+                setBuyers(response.data);
+            } catch (error) { 
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ooops',
+                    text: 'Aconteceu um problema, recarregar a página pode resolver!' + '<br/>' + error,
+                    confirmButtonText: 'Ok'
+                })
+            }
+        };
+
+        fetchBuyers();
+    }, []);
+
     const validateCost = (value: string): boolean => {
-        if (value.startsWith('0')) {
-            return false;
-        }
-    
-        if (!/^\d+(\.\d{0,2})?$/.test(value)) {
-            return false;
-        }
-    
-        if (value.length > 8) {
-            return false;
-        }
-    
-        return true;
+        return !(
+            value.startsWith('0') ||
+            !/^\d+(\.\d{0,2})?$/.test(value) ||
+            value.length > 8
+        );
     };
+    
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown; }>) => {
         const { name, value } = event.target;
@@ -92,17 +97,6 @@ const SalesPage: React.FC = () => {
     };
 
     const handleCancel = () => {
-        const emptyValues: SaleData = {
-            id: '',
-            saleDate: new Date().toLocaleDateString('pt-BR'),
-            buyerName: '',
-            address: '',
-            product: '',
-            cost: '',
-            paymentMethod: '',
-            shippingStatus: ''
-        };
-
         Swal.fire({
             title: "Tem certeza?",
             text: "Os dados preenchidos serão perdidos.",
@@ -112,14 +106,57 @@ const SalesPage: React.FC = () => {
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
+                const emptyValues: SaleData = {
+                    hour: new Date().toLocaleTimeString(),
+                    saleDate: new Date().toLocaleDateString('pt-BR'),
+                    buyerName: '',
+                    address: '',
+                    product: '',
+                    cost: '',
+                    paymentMethod: '',
+                    shippingStatus: ''
+                };
                 setSaleData(emptyValues);
             }
         });
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(saleData);
+
+        try {
+            const response = await axios.post('http://localhost:3000/api/orders', saleData);
+            console.log('Venda criada com sucesso:', response.data);
+
+            const emptyValues: SaleData = {
+                hour: new Date().toLocaleTimeString(),
+                saleDate: new Date().toLocaleDateString('pt-BR'),
+                buyerName: '',
+                address: '',
+                product: '',
+                cost: '',
+                paymentMethod: '',
+                shippingStatus: ''
+            };
+            
+            setSaleData(emptyValues);
+
+            Swal.fire({
+                title: "Venda realizada!",
+                text: "A venda foi registrada com sucesso.",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        } catch (error) {
+            console.error('Erro ao criar venda:', error);
+
+            Swal.fire({
+                title: "Erro!",
+                text: "Ocorreu um erro ao registrar a venda." + "<br/>" + error,
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
     };
 
     return (
@@ -133,12 +170,12 @@ const SalesPage: React.FC = () => {
                     <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
-                            label="ID"
-                            helperText="O id é preenchido automaticamente ao selecionar o cliente"
+                            label="Horário"
+                            helperText="É preenchido automaticamente com o horário atual por padão"
                             name="id"
-                            disabled
-                            value={saleData.id}
+                            value={saleData.hour}
                             onChange={handleChange}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -163,11 +200,13 @@ const SalesPage: React.FC = () => {
                             required
                             select
                             SelectProps={{ native: true }}
-                            value={saleData.buyerName !== '' ? saleData.buyerName : undefined }
+                            value={saleData.buyerName}
+                            InputLabelProps={{ shrink: true }}
                         >
-                            {buyerName.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    { option.label != null ? option.label : ''}
+                            <option value="">Selecione...</option>
+                            {buyers.map((option) => (
+                                <option key={option.name} value={option.name}>
+                                    { option.name != null ? option.name : ''}
                                 </option>
                             ))}
                         </TextField>

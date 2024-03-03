@@ -1,13 +1,32 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
+import axios from 'axios';
 
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
+function preventDefault(event) {
+    event.preventDefault();
 }
 
 export default function Deposits() {
+    const [dailyTotal, setDailyTotal] = useState(0);
+
+    useEffect(() => {
+        const fetchDailyTotal = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/orders');
+                const orders = response.data;
+                const total = orders.reduce((acc: number, curr: { cost: string }) => acc + parseFloat(curr.cost), 0);
+
+                setDailyTotal(total.toFixed(2));
+            } catch (error) {
+                console.error('Erro ao obter os dados:', error);
+            }
+        };
+
+        fetchDailyTotal();
+    }, []);
+
     const getDay = new Date().getDate();
     const getMonth = new Date().getMonth();
     const monthName = {
@@ -25,13 +44,12 @@ export default function Deposits() {
         11: 'Dezembro',
     }[getMonth];
     const getYear = new Date().getFullYear();
-    
 
     return (
         <React.Fragment>
-            <Title>Saldo  do dia</Title>
+            <Title>Saldo do dia</Title>
             <Typography component="p" variant="h4">
-                R$ 3.024,00
+                R$ {dailyTotal}
             </Typography>
             <Typography color="text.secondary" sx={{ flex: 1 }}>
                 {getDay} de {monthName} de {getYear}
